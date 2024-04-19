@@ -1,0 +1,50 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main
+{
+	public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Double> num = new ArrayList<>();
+        int valor;
+        int i = 0;
+        int l = 0;
+        boolean op = true;
+        while (op = true) {
+            System.out.println("Digite o valor das vendas do funcionário " + (i + 1) + " (-1 para sair)");
+            try {
+                valor = sc.nextInt();
+                if (valor <= -1) {
+                    i--;
+                    op = false;
+                    break;
+                } else {
+                    num.add(200 + (valor * 0.09));
+                    i++;
+                }
+            } catch(Exception e) {
+                System.out.println("Erro: Digite um valor válido");
+                sc.next();
+            }
+        }
+        System.out.println("A tabela de salário dos funcionários é:");
+        for (int m = 0; m <= 7; m++) {
+           for (int o = 0; o <= i; o++) {
+            if (m != 7) {
+                if (num.get(o) >= (200 + (m * 100)) && num.get(o) <= (299 + (m * 100))) {
+                    l++;
+                }
+            }
+                if (num.get(o) > 1000) {
+                    l++;
+                }
+           }
+           if (m != 7) {
+              System.out.println("De R$" + (200 + (m * 100)) + " a R$" + (299 + (m * 100)) + ": " + l + " Funcionários");
+              l = 0; 
+           } else {
+               System.out.println("Mais de R$1000: " +  l + " Funcionários");
+        }
+	}
+}
+}
